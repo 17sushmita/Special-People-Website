@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>freshlybuilt</title>
-	<link rel="icon" href="icon_path" type="image/icon type">
+	<link rel="icon" href="{{ url_for('static', filename='images/Freshlybuilt-Logo.png') }}" type="image/icon type">
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/ImageBol.css') }}">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 	<script type="text/javascript" src="{{url_for('static', filename='javascript/jquery-1.10.2.min.js') }}"></script>
@@ -22,7 +22,12 @@
             <li><a href="mailto:internship@freshlybuilt.com"><i class="fa fa-envelope"></i> Email</a></li>
         </ul> 
 	</li>
-<li class="l1" style="float:right"><a class="active" href="About"><i class="fas fa-info-circle"></i> About</a></li>
+<li class="l1" style="float:right"><a class="active" href="{{url_for('about')}}"><i class="fas fa-info-circle"></i> About</a></li>
+<li class="l1" style="float:right"><a class="active" href="{{url_for('textbol')}}">Text to Audio</a></li>
+<li class="l1" style="float:right"><a class="active" href="#">PDF to Audio</a></li>
+<li class="l1" style="float:right"><a class="active" href="{{url_for('home')}}">Image to Audio</a></li>
+
+
 <div id="errorAlert" class="alert alert-danger" role="alert" style="display:none;"></div>
 {% block body %} {% endblock %}
 <footer>
@@ -30,8 +35,6 @@
 		@Copyrights
 	</p>
 </footer>
-<script type="text/javascript" src="{{url_for('static', filename='javascript/ImageBol.js') }}">
-</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
 </body>
 </html> 

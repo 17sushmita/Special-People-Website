@@ -439,3 +439,24 @@ p{
   margin-bottom:100px;
   text-align: center;
 }
+
+.container .form-group .text-area-wrapper{
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+  width: 100%;
+  border-radius: 10px;
+  background: #fff;
+  border:2px dashed #2F4F4F;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.text-area-wrapper .textarea{
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+

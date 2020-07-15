@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+    {% block body %}
+
+
+         
+</nav>
+</ul>   
+</div>	
+<!-- Preview section -->
+<center>
+<div class="container" id="click">
+    <div class="form-group">
+        <form id="text-bol-form" action="/text-convert" method="POST" enctype="multipart/form-data">
+
+	<div style="border: none; border-radius: 0%;" class="text-area-wrapper">
+		<div  class="textarea">
+            <textarea name="text" id="text" style="width: 100%; max-width: 100%; height: 100%;" placeholder="Write Something..."></textarea>
+            <img style="display: none;" id="loader" src="{{ url_for('static', filename='images/loading.gif') }}" >
+
+        </div>
+        
+          <div class="lang">
+            <select class="select_lang" name="languages" method="GET" >
+            {% for language in languages %}
+            {% if language=='english' %}
+                <option value= "{{language}}" SELECTED >{{language}}</option>
+            {% else %}
+                <option value= "{{language}}" >{{language}}</option>
+            {% endif %}
+            {% endfor %}
+            </select>
+        </div> 
+    </div>
+    
+    <button id="upload" type="submit" class="btn-primary">Convert to Audio</button>
+    </form>
+	</div>
+</center>
+<!-- Audio player -->
+        <div id="main">
+			<div id="player">
+				<div id="buttons">
+					<button id="pre" onclick="pre()"><img src="{{ url_for('static', filename='images/Pre.png') }}" height="90%" width="90%"/></button>
+					<button id="play" onclick="playOrPauseSong()"><img src="{{ url_for('static', filename='images/Play.png') }}"/></button>
+					<button id="next" onclick="next()"><img src="{{ url_for('static', filename='images/Next.png') }}" height="90%" width="90%"/></button>
+				</div>
+            <div id="songTitle">Demo</div>
+                <div id="seek-bar">
+					<div id="fill"></div>
+					<div id="handle"></div>
+				</div>
+            </div>
+        </div>
+        <center>
+            <div class="down">
+                <a id="audioDownload"><button class="btn-primary">Download Audio</button></a>
+            </div>
+        </center>
+    </div>
+
+<script type="text/javascript" src="{{url_for('static', filename='javascript/TextBol.js') }}">
+</script>
+    
+
+{% endblock %}

@@ -6,6 +6,9 @@ scanned_image_path=join('static','image','scanned')
 uploaded_image_path=join('static','image','uploads')
 audio_files_path=join('static','audio')
 def preprocess(imgname):
+    '''
+    preprocess image before text extraction
+    '''
     image_path=uploaded_image_path+"/"+imgname
     image=imread(image_path)
     skew=ImageProcess.remove_skew(image)
@@ -16,6 +19,10 @@ def preprocess(imgname):
 
 
 def convert_audio(imgname,language='english'):
+    '''
+    extract text from scanned image and
+    translate and convert text to audio
+    '''
     image_path=scanned_image_path+"/"+imgname
     image=imread(image_path)
     text=ImageProcess.to_text(image)
