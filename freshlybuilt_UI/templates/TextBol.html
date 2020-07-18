@@ -37,6 +37,8 @@
 	</div>
 </center>
 <!-- Audio player -->
+<center>
+
         <div id="main">
 			<div id="player">
 				<div id="buttons">
@@ -44,13 +46,15 @@
 					<button id="play" onclick="playOrPauseSong()"><img src="{{ url_for('static', filename='images/Play.png') }}"/></button>
 					<button id="next" onclick="next()"><img src="{{ url_for('static', filename='images/Next.png') }}" height="90%" width="90%"/></button>
 				</div>
-            <div id="songTitle">Demo</div>
+            <div id="songTitle"></div>
                 <div id="seek-bar">
 					<div id="fill"></div>
 					<div id="handle"></div>
 				</div>
             </div>
         </div>
+    </center>
+
         <center>
             <div class="down">
                 <a id="audioDownload"><button class="btn-primary">Download Audio</button></a>

@@ -24,7 +24,7 @@
 	</li>
 <li class="l1" style="float:right"><a class="active" href="{{url_for('about')}}"><i class="fas fa-info-circle"></i> About</a></li>
 <li class="l1" style="float:right"><a class="active" href="{{url_for('textbol')}}">Text to Audio</a></li>
-<li class="l1" style="float:right"><a class="active" href="#">PDF to Audio</a></li>
+<li class="l1" style="float:right"><a class="active" href="{{url_for('pdfbol')}}">PDF to Audio</a></li>
 <li class="l1" style="float:right"><a class="active" href="{{url_for('home')}}">Image to Audio</a></li>
 
 
@@ -35,6 +35,6 @@
 		@Copyrights
 	</p>
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+<script type="text/javascript" src="{{url_for('static', filename='javascript/jquery.min.js')}}"></script> 
 </body>
 </html> 

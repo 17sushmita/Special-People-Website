@@ -70,7 +70,6 @@ h1{
 .sidebar{
   margin-top: 50px;
   width: 200px;
-  height: 320px;
   /*background: #4b4276;*/
   background: -webkit-linear-gradient(left, #2F4F4F, #008080);
   padding: 30px 0px;
@@ -167,7 +166,6 @@ border-radius: 5px;
 footer {
     font-size: 20px;
     bottom: 0;
-    position: fixed;
     left: 0;
     right: 0;
     height: 70px;
@@ -189,7 +187,6 @@ body .container{
   place-items:center;
   text-align: center;
   margin-top: 230px;
-  padding-bottom: 350px;
 }
 .container{
   height: 350px;
@@ -279,13 +276,9 @@ body .container{
   /*background: -webkit-linear-gradient(left, #2F4F4F, #008080);*/
   /*background: -webkit-linear-gradient(left, #2F4F4F, #008080);*/
   border-radius: 15px;
-  position: absolute;
-  top:830px;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  z-index: 999;
 }
 #player{
+  margin: 50px;
   padding: 45px;
   color:#333;
 }
@@ -435,8 +428,6 @@ p{
   bottom: 20%;
 }
 .down{
-  margin-top:-140px;
-  margin-bottom:100px;
   text-align: center;
 }
 
@@ -460,3 +451,33 @@ p{
   justify-content: center;
 }
 
+.navigation-controls{
+  display:none;
+}
+
+.wrapper.active + .navigation-controls{
+  display:block;
+}
+
+.navigation-controls button{
+  padding: 10px;
+  color: white;
+  width: 20%;
+  padding: 5px;
+  border-radius: 20px;
+  font-size: 20px;
+  margin: 10px 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: -webkit-linear-gradient(left, #2F4F4F, #008080);
+ 
+}
+
+.navigation-controls input{
+  margin: 10px 0;
+}
+
+.wrapper.active .canvas{
+  border:solid;
+}

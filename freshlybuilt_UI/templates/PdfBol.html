@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
     {% block body %}
-
+        
+    
 <input type="checkbox"id="openSidebar">
     <label for="openSidebar" class="sidebarIconToggle">
         <div class="spinner top"></div>
@@ -9,12 +10,11 @@
     </label>
          <div class="sidebar">
          	<ul>
-                <li><label onclick="defaultBtnActive(this.id)" id="camera-btn"><i class="fa fa-camera-retro" aria-hidden="true"></i> Camera</label></li>
-                <li><label onclick="defaultBtnActive(this.id)" id="upload-btn">
+                <li><label onclick="defaultBtnActive()" id="upload-btn">
                   <i class="fas fa-upload"></i> Upload</label></li>
 
                 <li class="trans"><label ><i class="fas fa-language"></i> Translate</label>
-                    <form action="/upload-image" method="POST" enctype="multipart/form-data">
+                    <form action="{{url_for('pdf_convert',)}}" method="POST" enctype="multipart/form-data">
                 
                     <div class="lang">
                         <select class="select_lang" name="languages" method="GET" >
@@ -36,29 +36,44 @@
 </div>	
 <!-- Preview section -->
 <center>
-<div class="container" id="click">
-    <div class="form-group">
-        <input hidden type="file" accept="image/*" name="original-image" id="original-image">
-	<div class="wrapper">
-		<div class="image">
-            <img id="img1" src= "" alt="" width="100%" height="100%" />
+    <div class="container" id="click">
+        <div class="form-group">
+            <input hidden name="pdf-file" id="pdf-file" type="file" accept="application/pdf">
+
+        <div class="wrapper">
+             <div id="my_pdf_viewer">
+                <div class="canvas" id="canvas_container">
+                    <canvas hidden id="pdf_renderer"></canvas>
+                </div>
+             </div>
+             <div class="content">
+                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <div class="text">Preview</div>
+            </div> 
+            
+            
+            
+            <div id='loader' style='display: none;'>
+                <img src="{{ url_for('static', filename='images/loading.gif') }}" >
+              </div>
+        <div id="cancel-btn"><i class="fas fa-times"></i></div>
+        <div class="file-name">file name here</div>
         </div>
-        <div class="content">
-        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-        <div class="text">Preview</div>
-         </div>
-         <div id='loader' style='display: none;'>
-            <img src="{{ url_for('static', filename='images/loading.gif') }}" >
-          </div>
-    <div id="cancel-btn"><i class="fas fa-times"></i></div>
-    <div class="file-name">file name here</div>
-    </div>
-    <button id="upload" type="submit" class="btn-primary">Scan</button>
-    </form>
-	</div>
+        <div class="navigation-controls" id="navigation_controls">
+            <button type="button" id="go_previous"><i class="fas fa-arrow-circle-left">Previous</i></button>
+            <input name="page" id="current_page" value="1" type="number"/>
+            <button type="button" id="go_next">Next<i class="fas fa-arrow-circle-right"></i></button>
+        </div>
+        <button id="upload" type="submit" class="btn-primary">Scan</button>
+        </form>
+        </div>
+    
+
+    
 </center>
 <!-- Audio player -->
 <center>
+
         <div id="main">
 			<div id="player">
 				<div id="buttons">
@@ -74,16 +89,15 @@
             </div>
         </div>
     </center>
-
         <center>
             <div class="down">
                 <a id="audioDownload"><button class="btn-primary">Download Audio</button></a>
             </div>
         </center>
     </div>
-
-<script type="text/javascript" src="{{url_for('static', filename='javascript/ImageBol.js') }}">
+<script type="text/javascript" src="{{url_for('static', filename='javascript/PdfBol.js') }}">
 </script>
-    
-
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js">
+</script>
 {% endblock %}

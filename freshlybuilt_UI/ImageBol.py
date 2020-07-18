@@ -3,6 +3,8 @@ import os,secrets
 from utils import preprocess,convert_audio
 from freshlybuiltimagebol import bhasha_codes,ShabdDhwani
 from werkzeug.utils import secure_filename
+from pdf2image import convert_from_path
+
 
 app=Flask(__name__)
 
@@ -10,6 +12,7 @@ app.config['ALLOWED_IMAGE_EXTENSIONS']=['PNG','JPG','JPEG','GIF']
 
 app.config["UPLOADED_PHOTOS_PATH"]=os.path.join('static','image','uploads')
 app.config["AUDIO_FILES"]=os.path.join('static','audio')
+app.config["UPLOADED_PDF_PATH"]=os.path.join('static','pdf')
 
 @app.route('/home')
 @app.route("/", methods=["GET","POST"])
@@ -89,6 +92,43 @@ def text_convert():
 		return jsonify({'audio' : audio_file_name})
 	return jsonify({'error': 'Something went wrong!!!'})
 
+@app.route('/pdf-bol')
+def pdfbol():
+	'''
+	renders PdfBol template
+	'''
+	languages=bhasha_codes.bhasha_kosh.values()
+	return render_template('PdfBol.html',languages=languages)
 
+@app.route("/pdf-convert", methods=["POST"])
+def pdf_convert():
+	'''
+	extract current pagr from pdf in image format and 
+	extract text from image and translate and 
+	convert the text to audio file and 
+	returns the audio file name in json format
+	'''
+	if request.method == "POST":
+		if request.files:
+			pdf = request.files["pdf-file"]
+			if pdf.filename=="":
+				flash('Image must have a filename!!')
+			pdfname=secrets.token_hex(10)+'.'+'.pdf'
+
+			pdf_save_path=os.path.join(app.config["UPLOADED_PDF_PATH"],pdfname)
+			pdf.save(pdf_save_path)
+			language = request.form.get('languages')
+			page=request.form['page']
+			imgname=secrets.token_hex(10)+'.'+'.png'
+			img_save_path=os.path.join(app.config["UPLOADED_PHOTOS_PATH"],imgname)
+			image=convert_from_path(pdf_save_path)
+			image[int(page)-1].save(img_save_path)
+			preprocess(imgname)
+			audio_file=convert_audio(imgname,language)
+			return jsonify({'text' : audio_file})
+
+		return jsonify({'error' : 'Something went wrong!!'})
+
+	
 
 app.run(debug=True)
