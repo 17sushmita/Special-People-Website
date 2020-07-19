@@ -102,6 +102,24 @@ function pre(){
 }
 
 
+// Display Text
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("state");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+
+
 //upload and scan image
 $(document).ready(function (e) {
     $('form').on('submit',(function(e) {
@@ -123,9 +141,10 @@ $(document).ready(function (e) {
                },
             success:function(data){
                 $('#img1').attr("src","static/image/scanned/"+data.image);
-                $('#audioDownload').attr('href',"static/audio/"+data.text);
-                $('#audioDownload').attr('download',data.text);
-				songs[0]=data.text
+                $('#audioDownload').attr('href',"static/audio/"+data.audio);
+                $('#audioDownload').attr('download',data.audio);
+                $('#textContent').html(data.text.replace(/\n/g, "<br>"));
+				songs[0]=data.audio;
 				playSong();
 				$("#play img").attr("src","static/images/Pause.png");
 				//song.src="static/audio/"+data.text;
@@ -135,6 +154,9 @@ $(document).ready(function (e) {
                 // Hide image container
                 $("#img1").attr('style','opacity:1');
                 $("#loader").hide();
+                $('.collapsible').attr('style','display:block;');
+                //$('.container').width('100%');
+                
                },
             error: function(data){
                 //$('#errorAlert').text('Oops!! Something went wrong!!').show();

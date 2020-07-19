@@ -43,6 +43,7 @@
 		<div class="image">
             <img id="img1" src= "" alt="" width="100%" height="100%" />
         </div>
+        
         <div class="content">
         <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
         <div class="text">Preview</div>
@@ -53,9 +54,14 @@
     <div id="cancel-btn"><i class="fas fa-times"></i></div>
     <div class="file-name">file name here</div>
     </div>
+    <button style="display: none;" type="button" class="collapsible">View Text</button>
+    <div id="text" class="text">
+    <p style="text-align:left" id="textContent"></p>
+    </div>
     <button id="upload" type="submit" class="btn-primary">Scan</button>
     </form>
-	</div>
+    </div>
+</div>
 </center>
 <!-- Audio player -->
 <center>
@@ -66,7 +72,7 @@
 					<button id="play" onclick="playOrPauseSong()"><img src="{{ url_for('static', filename='images/Play.png') }}"/></button>
 					<button id="next" onclick="next()"><img src="{{ url_for('static', filename='images/Next.png') }}" height="90%" width="90%"/></button>
 				</div>
-            <div id="songTitle"></div>
+                <div id="songTitle"></div>
                 <div id="seek-bar">
 					<div id="fill"></div>
 					<div id="handle"></div>

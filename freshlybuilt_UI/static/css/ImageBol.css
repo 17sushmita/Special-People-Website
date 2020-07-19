@@ -182,7 +182,6 @@ footer p {
 }
 /*Preview*/
 body .container{
-  display: inline-block;
   height: 100%;
   place-items:center;
   text-align: center;
@@ -190,8 +189,7 @@ body .container{
 }
 .container{
   height: 350px;
-  /*width: 430px;*/
-  width: 60%;
+  width: 50%;
   }
 .container .wrapper{
   position: relative;
@@ -287,10 +285,7 @@ body .container{
   text-align: center;
   font-family: monospace;
   font-size: 18px;
-  position: absolute;
-  top:42%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+
 }
 #buttons{
   height: 50px;
@@ -462,8 +457,6 @@ p{
 .navigation-controls button{
   padding: 10px;
   color: white;
-  width: 20%;
-  padding: 5px;
   border-radius: 20px;
   font-size: 20px;
   margin: 10px 0;
@@ -480,4 +473,35 @@ p{
 
 .wrapper.active .canvas{
   border:solid;
+}
+
+.collapsible {
+  /*background-color: #777;*/
+  background: -webkit-linear-gradient(left, #FF7F50, #FFA500);
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+.state, .collapsible:hover {
+  /*background-color: #555;*/
+  background: -webkit-linear-gradient(left, #2F4F4F, #008080);
+}
+.state{
+  /*background-color: #555;*/
+  border-top-left-radius: 10px;
+}
+
+
+.text {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
 }

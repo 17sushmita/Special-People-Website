@@ -46,6 +46,7 @@
                     <canvas hidden id="pdf_renderer"></canvas>
                 </div>
              </div>
+            
              <div class="content">
                 <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                 <div class="text">Preview</div>
@@ -60,10 +61,15 @@
         <div class="file-name">file name here</div>
         </div>
         <div class="navigation-controls" id="navigation_controls">
-            <button type="button" id="go_previous"><i class="fas fa-arrow-circle-left">Previous</i></button>
+            <button type="button" id="go_previous"><i class="fas fa-arrow-circle-left"></i>Previous</button>
             <input name="page" id="current_page" value="1" type="number"/>
             <button type="button" id="go_next">Next<i class="fas fa-arrow-circle-right"></i></button>
         </div>
+        <button style="display: none;" type="button" class="collapsible">View Text</button>
+    <div id="text" class="text">
+    <p style="text-align:left" id="textContent"></p>
+    </div>
+    
         <button id="upload" type="submit" class="btn-primary">Scan</button>
         </form>
         </div>

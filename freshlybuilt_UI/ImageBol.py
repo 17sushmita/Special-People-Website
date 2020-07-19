@@ -63,8 +63,8 @@ def upload_image():
 			img_save_path=os.path.join(app.config["UPLOADED_PHOTOS_PATH"],imgname)
 			image.save(img_save_path)
 			preprocess(imgname)
-			audio_file=convert_audio(imgname,language)
-			return jsonify({'image':imgname,'text' : audio_file})
+			text,audio_file=convert_audio(imgname,language)
+			return jsonify({'image':imgname,'text':text,'audio' : audio_file})
 
 		return jsonify({'error' : 'Something went wrong!!'})
 
@@ -113,19 +113,19 @@ def pdf_convert():
 			pdf = request.files["pdf-file"]
 			if pdf.filename=="":
 				flash('Image must have a filename!!')
-			pdfname=secrets.token_hex(10)+'.'+'.pdf'
+			pdfname=secrets.token_hex(10)+'.pdf'
 
 			pdf_save_path=os.path.join(app.config["UPLOADED_PDF_PATH"],pdfname)
 			pdf.save(pdf_save_path)
 			language = request.form.get('languages')
 			page=request.form['page']
-			imgname=secrets.token_hex(10)+'.'+'.png'
+			imgname=secrets.token_hex(10)+'.png'
 			img_save_path=os.path.join(app.config["UPLOADED_PHOTOS_PATH"],imgname)
 			image=convert_from_path(pdf_save_path)
 			image[int(page)-1].save(img_save_path)
 			preprocess(imgname)
-			audio_file=convert_audio(imgname,language)
-			return jsonify({'text' : audio_file})
+			text,audio_file=convert_audio(imgname,language)
+			return jsonify({'text':text,'audio' : audio_file})
 
 		return jsonify({'error' : 'Something went wrong!!'})
 

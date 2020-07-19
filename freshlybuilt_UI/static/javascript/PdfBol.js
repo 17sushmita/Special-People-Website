@@ -167,6 +167,22 @@ function pre(){
     $("#play img").attr("src","static/images/Pause.png");
 }
 
+// Display Text
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("state");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
 
 
 $(document).ready(function (e) {
@@ -184,13 +200,15 @@ $(document).ready(function (e) {
             processData: false,
             beforeSend: function(){
                 // Show image container
-                $("#pdf_renderer").hide();
+                $("#canvas_container").hide();
                 $("#loader").show();
                },
             success:function(data){
-                $('#audioDownload').attr('href',"static/audio/"+data.text);
-                $('#audioDownload').attr('download',data.text);
-				songs[0]=data.text
+                $('#audioDownload').attr('href',"static/audio/"+data.audio);
+                $('#audioDownload').attr('download',data.audio);
+                //console.log($('#textContent'));
+                $('#textContent').html(data.text.replace(/\n/g, "<br>"));
+				songs[0]=data.audio;
 				playSong();
 				$("#play img").attr("src","static/images/Pause.png");
 				//song.src="static/audio/"+data.text;
@@ -198,8 +216,10 @@ $(document).ready(function (e) {
             },
             complete:function(data){
                 // Hide image container
-                $("#pdf_renderer").show();
+                $("#canvas_container").show();
                 $("#loader").hide();
+                $('.collapsible').attr('style','display:block;');
+
                },
             error: function(data){
                 //$('#errorAlert').text('Oops!! Something went wrong!!').show();

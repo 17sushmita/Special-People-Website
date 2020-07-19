@@ -28,5 +28,5 @@ def convert_audio(imgname,language='english'):
     text=ImageProcess.to_text(image)
     audio_file_name=imgname.split('.')[0]+"_"+language+".mp3"
     ShabdDhwani.shabd_se_dhwani(text,language,audio_files_path+"/"+audio_file_name)
-    return audio_file_name
+    return text,audio_file_name
     
